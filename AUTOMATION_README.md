@@ -2,6 +2,21 @@
 
 Saya telah membuat sistem otomatis untuk generate **34 folder website portal berita** dengan tema yang berbeda-beda, tapi konten yang sama.
 
+## 🔧 Langkah Eksekusi Rebrand PowerShell
+
+Jalankan dari root project dengan encoding **UTF-8** dan buat backup `articles.json.bak` terlebih dulu:
+
+```powershell
+Copy-Item .\articles.json .\articles.json.bak -Force
+Get-ChildItem -Recurse -Include *.html | ForEach-Object {
+    $content = Get-Content $_.FullName -Raw -Encoding UTF8
+    $content = $content.Replace([char]0x201C, '"').Replace([char]0x201D, '"')
+    Set-Content $_.FullName $content -Encoding UTF8 -NoNewline
+}
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\rebrand-to-lintas-janten.ps1
+```
+
 ---
 
 ## 📋 File yang Dibuat
@@ -10,11 +25,11 @@ Saya telah membuat sistem otomatis untuk generate **34 folder website portal ber
 Template konfigurasi untuk 34 portal berita. Berisi:
 - **folderName**: Nama folder untuk setiap site (site-01, site-02, dst)
 - **siteName**: Nama portal berita (akan replace "BizNews")
-- **email**: Email portal (akan replace "IndonesiaDaily33@gmail.com")
-- **socialHandle**: Handle social media (akan replace "indonesiadaily")
+- **email**: Email portal (akan replace `lintasjanten@gmail.com`)
+- **socialHandle**: Handle social media (akan replace `lintasjanten`)
 - **colors**: Tema warna
-  - **primary**: Warna utama kuning (contoh: #FFCC00 → custom)
-  - **dark**: Warna gelap hitam (contoh: #1E2024 → custom)
+  - **primary**: Warna utama kuning (contoh: #EA580C → custom)
+  - **dark**: Warna gelap hitam (contoh: #7C2D12 → custom)
   - **secondary**: Warna sekunder
 
 ### 2. **`tools/generate-sites.js`**
@@ -114,12 +129,12 @@ Script akan mengganti di **semua file** (.html, .css, .js):
 | Yang Direplac | Diganti Dengan |
 |---|---|
 | `BizNews` | `siteName` dari config |
-| `IndonesiaDaily` | `siteName` (tanpa spaces) |
-| `indonesiadaily` | `socialHandle` |
-| `IndonesiaDaily33@gmail.com` | `email` |
-| `#FFCC00` (primary) | Warna primary dari config |
-| `#1E2024` (dark) | Warna dark dari config |
-| `#31404B` (secondary) | Warna secondary dari config |
+| `LintasJanten` | `siteName` (tanpa spaces) |
+| `LintasJanten` | `socialHandle` |
+| `LintasJanten33@gmail.com` | `email` |
+| `#EA580C` (primary) | Warna primary dari config |
+| `#7C2D12` (dark) | Warna dark dari config |
+| `#1F5F2F` (secondary) | Warna secondary dari config |
 
 ---
 
