@@ -8,7 +8,7 @@ const SHEETS_URL = process.env.SHEETS_URL || 'https://script.google.com/macros/s
 const TEMPLATE_PATH = path.join(__dirname, 'template.html');
 const ARTICLES_JSON_PATH = path.resolve(__dirname, '../articles.json');
 const OUT_DIR = path.resolve(__dirname, '../article');
-const IMG_DIR = 'img';x
+const IMG_DIR = 'img';
 
 function toSlug(str) {
   if (!str) return 'unknown';
