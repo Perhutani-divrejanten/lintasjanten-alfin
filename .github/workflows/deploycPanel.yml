@@ -27,7 +27,7 @@ jobs:
           security: loose
           local-dir: ./
           server-dir: /lintasjanten/
-          timeout: 500000
+          timeout: 700000
           dangerous-clean-slate: false
           exclude: |
             **/.git*
@@ -73,7 +73,7 @@ jobs:
           security: loose
           local-dir: ./article/
           server-dir: /lintasjanten/article/
-          timeout: 500000
+          timeout: 700000
           dangerous-clean-slate: false
           exclude: |
             **/.git*
